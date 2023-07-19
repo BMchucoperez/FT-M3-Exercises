@@ -21,15 +21,19 @@ args.forEach(function (arg) {
 
 async function problemA() {
   // callback version
-  exerciseUtils.readFile("poem-one/stanza-01.txt", function (err, stanza) {
+  exerciseUtils.readFile("poem-two/stanza-01.txt", function (err, stanza) {
     exerciseUtils.blue(stanza);
   });
-  exerciseUtils.readFile("poem-one/stanza-02.txt", function (err, stanza) {
+  exerciseUtils.readFile("poem-two/stanza-02.txt", function (err, stanza) {
     exerciseUtils.blue(stanza);
   });
 
   // async await version
   // Tu código acá:
+  const stanza1 = await exerciseUtils.promisifiedReadFile("poem-two/stanza-01.txt"); 
+    exerciseUtils.blue(stanza1)
+  const stanza2 = await exerciseUtils.promisifiedReadFile("poem-two/stanza-02.txt"); 
+    exerciseUtils.blue(stanza2)
 }
 
 async function problemB() {
@@ -46,6 +50,9 @@ async function problemB() {
 
   // async await version
   // Tu código acá:
+  const promises = filenames.map(file => exerciseUtils.promisifiedReadFile(file));
+  const stanzas = await Promise.all(promises);
+  stanzas.forEach(stanza => exerciseUtils.blue(stanza))
 }
 
 async function problemC() {
@@ -62,6 +69,9 @@ async function problemC() {
 
   // async await version
   // Tu código acá:
+  const promises = filenames.map(file => exerciseUtils.promisifiedReadFile(file));
+  const stanzas = await Promise.all(promises);
+  stanzas.forEach(stanza => exerciseUtils.blue(stanza))
 }
 
 async function problemD() {
@@ -81,4 +91,14 @@ async function problemD() {
 
   // async await version
   // Tu código acá:
+  try {
+    const promises = filenames.map(file => exerciseUtils.promisifiedReadFile(file));
+    const stanzas = await Promise.all(promises);
+    stanzas.forEach(stanza => exerciseUtils.blue(stanza))
+  } catch (error) {
+    exerciseUtils.magenta(error)
+  }finally{
+    console.log("done");
+  }
+  
 }
