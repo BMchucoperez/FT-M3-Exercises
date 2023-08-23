@@ -20,7 +20,9 @@ const levelTwo = (letras) => {
 };
 
 const levelThree = (a, b) => {
+
    return [...a, ...b].sort()
+   
 };
 
 const levelFour = (num) => {
